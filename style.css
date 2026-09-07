@@ -1,0 +1,591 @@
+/* ================================
+   GENERAL
+================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #241416;
+}
+
+
+/* ================================
+   ENVELOPE PAGE
+================================ */
+
+.envelope-page {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #321b1f 0%,
+            #170d0f 55%,
+            #090607 100%
+        );
+
+    overflow: hidden;
+}
+
+.envelope-container {
+    text-align: center;
+}
+
+
+/* Envelope */
+
+.envelope {
+    width: 360px;
+    height: 240px;
+
+    position: relative;
+
+    margin: auto;
+
+    filter: drop-shadow(
+        0 25px 35px rgba(0, 0, 0, 0.55)
+    );
+
+    transition: transform 0.5s ease;
+}
+
+.envelope:hover {
+    transform: translateY(-5px);
+}
+
+
+/* Envelope body */
+
+.envelope-body {
+    position: absolute;
+
+    inset: 0;
+
+    background: #35191d;
+
+    border: 1px solid #6b343b;
+
+    border-radius: 5px;
+
+    z-index: 2;
+}
+
+
+/* Envelope diagonal folds */
+
+.envelope-body::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            transparent 49%,
+            #54272d 50%,
+            transparent 51%
+        );
+
+    opacity: 0.8;
+}
+
+.envelope-body::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            35deg,
+            transparent 49%,
+            #54272d 50%,
+            transparent 51%
+        );
+
+    opacity: 0.8;
+}
+
+
+/* Envelope flap */
+
+.envelope-flap {
+    position: absolute;
+
+    width: 255px;
+    height: 255px;
+
+    left: 52px;
+    top: -125px;
+
+    transform: rotate(45deg);
+
+    background: #421e23;
+
+    border-left: 1px solid #70383f;
+    border-top: 1px solid #70383f;
+
+    z-index: 4;
+}
+
+
+/* Letter preview */
+
+.letter-preview {
+    position: absolute;
+
+    width: 270px;
+    height: 170px;
+
+    left: 45px;
+    top: 30px;
+
+    background: #eadbc4;
+
+    border: 1px solid #b69a83;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow:
+        0 8px 15px rgba(0, 0, 0, 0.25);
+
+    z-index: 3;
+}
+
+.letter-preview p {
+    color: #54272d;
+
+    font-size: 16px;
+
+    font-style: italic;
+
+    letter-spacing: 1px;
+}
+
+
+/* Wax seal */
+
+.wax-seal {
+    position: absolute;
+
+    width: 70px;
+    height: 70px;
+
+    left: 50%;
+    bottom: 15px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #a64b57,
+            #681f2a 60%,
+            #3e1118
+        );
+
+    border: 3px solid #8d3d48;
+
+    border-radius: 50%;
+
+    color: #e8c9c9;
+
+    font-size: 27px;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 7px 15px rgba(0, 0, 0, 0.45);
+
+    z-index: 10;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.wax-seal:hover {
+    transform: translateX(-50%) scale(1.08);
+
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.6);
+}
+
+
+/* Envelope hint */
+
+.hint {
+    margin-top: 30px;
+
+    color: #b98c91;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+
+    text-transform: lowercase;
+}
+
+
+/* ================================
+   LETTER PAGE
+================================ */
+
+.letter-page {
+    min-height: 100vh;
+
+    padding: 70px 20px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #3a2023 0%,
+            #1b0e10 45%,
+            #090607 100%
+        );
+}
+
+
+/* Paper */
+
+.paper {
+    width: min(850px, 100%);
+
+    margin: auto;
+
+    padding: 70px 80px;
+
+    background:
+        linear-gradient(
+            rgba(245, 234, 214, 0.97),
+            rgba(231, 214, 190, 0.97)
+        );
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.6);
+
+    border: 1px solid #9b7770;
+
+    position: relative;
+}
+
+
+/* Paper inner border */
+
+.paper::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 15px;
+
+    border: 1px solid rgba(80, 37, 40, 0.25);
+
+    pointer-events: none;
+}
+
+
+/* ================================
+   LETTER HEADER
+================================ */
+
+.paper-decoration {
+    text-align: center;
+
+    color: #721f2a;
+
+    font-size: 28px;
+
+    margin-bottom: 20px;
+}
+
+.paper h1 {
+    text-align: center;
+
+    font-size: 42px;
+
+    font-weight: normal;
+
+    color: #381b20;
+
+    margin-bottom: 10px;
+}
+
+.date {
+    text-align: center;
+
+    color: #80575a;
+
+    font-size: 14px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 55px;
+}
+
+
+/* ================================
+   LETTER TEXT
+================================ */
+
+#letterText {
+    position: relative;
+
+    z-index: 2;
+}
+
+#letterText p {
+    font-size: 18px;
+
+    line-height: 2;
+
+    color: #2d1c1e;
+
+    margin-bottom: 30px;
+
+    text-align: left;
+
+    /* Keeps spaces and line breaks looking natural */
+    white-space: normal;
+
+    overflow-wrap: break-word;
+}
+
+#letterText em,
+#letterText strong {
+    color: #681f29;
+}
+
+
+/* Final paragraph */
+
+.final-message {
+    text-align: center !important;
+
+    font-size: 23px !important;
+
+    color: #681f29 !important;
+
+    margin-top: 50px;
+}
+
+
+/* ================================
+   PHOTOS
+================================ */
+
+.photos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-top: 70px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.photo-placeholder {
+    height: 180px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d5bda9,
+            #b99586
+        );
+
+    border: 7px solid #f0dfca;
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: #59383a;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+/* ================================
+   ENDING
+================================ */
+
+.ending {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-top: 60px;
+
+    color: #721f2a;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.ending p {
+    font-style: italic;
+
+    font-size: 17px;
+}
+
+
+/* ================================
+   MUSIC BUTTON
+================================ */
+
+.music-button {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    padding: 12px 18px;
+
+    background: #2a1215;
+
+    color: #c9a1a3;
+
+    border: 1px solid #71333b;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    z-index: 100;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+.music-button:hover {
+    background: #421b21;
+
+    color: #ead1d1;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .envelope {
+        width: 300px;
+        height: 200px;
+    }
+
+    .envelope-flap {
+        width: 215px;
+        height: 215px;
+
+        left: 43px;
+        top: -105px;
+    }
+
+    .letter-preview {
+        width: 225px;
+        height: 150px;
+
+        left: 37px;
+        top: 25px;
+    }
+
+    .paper {
+        padding: 50px 28px;
+    }
+
+    .paper h1 {
+        font-size: 32px;
+    }
+
+    #letterText p {
+        font-size: 16px;
+
+        line-height: 1.8;
+
+        margin-bottom: 25px;
+    }
+
+    .photos {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-placeholder {
+        height: 220px;
+    }
+
+    .music-button {
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+/* ================================
+   REAL PHOTOS
+================================ */
+
+.photo-frame {
+    height: 180px;
+    background: #f0dfca;
+    padding: 7px;
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.25);
+
+    overflow: hidden;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
