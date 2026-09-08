@@ -77,7 +77,7 @@ async function typeParagraph(paragraph) {
 
         paragraph.textContent += character;
 
-        await wait(25);
+        await wait(60);
     }
 
     // Pause before next paragraph
